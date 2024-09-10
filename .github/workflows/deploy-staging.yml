@@ -1,0 +1,30 @@
+name: Deploy to Staging
+
+on:
+  push:
+    branches:
+      - develop  # Desencadena el flujo cuando se hace push a la rama 'develop'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run tests
+      run: npm test
+
+    - name: Deploy to Staging
+      run: |
+        # Aquí puedes agregar comandos para desplegar a staging
+        echo "Deploying to Staging"
